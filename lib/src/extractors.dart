@@ -9,8 +9,7 @@ mixin ErrorObjectExtractor {
 
   static void addExtractionKey(String key) => _extractionKeys.add(key);
 
-  static void addExtractionKeys(List<String> keys) =>
-      _extractionKeys.addAll(keys);
+  static void addExtractionKeys(List<String> keys) => _extractionKeys.addAll(keys);
 
   @protected
   static Map<String, dynamic> extractObj(Map<String, dynamic> map) {
