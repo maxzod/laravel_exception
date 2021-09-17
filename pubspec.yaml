@@ -1,14 +1,18 @@
 name: laravel_exception
 description: parse laravel exception message to dart class with geters to make it simpler
 version: 0.0.1-beta
+publish_to: "none"
 homepage: https://github.com/maxzod/
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   equatable: ^2.0.3
+  json_blueprint:
+    git:
+      url: git@github.com:maxzod/json_blueprint.git
 
 dev_dependencies:
-  lint: ^1.5.3
+  lints: ^1.0.1
   meta: ^1.3.0
   test: ^1.16.0
