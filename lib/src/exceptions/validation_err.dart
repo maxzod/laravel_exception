@@ -6,10 +6,12 @@ class LValidationException extends LaravelException<Map<String, dynamic>>
     with EquatableMixin {
   final Map<String, List<String>> _errors;
 
-  LValidationException({
-    required Map<String, dynamic> response,
-  })  : _errors = response['error'],
-        super(response);
+  LValidationException(
+    Map<String, dynamic> response,
+  )   : _errors = response['error'],
+        super(
+          response: response,
+        );
 
   /// contains the failed input keys in the exception object
   List<String> get keys => _errors.keys.toList();
@@ -19,6 +21,8 @@ class LValidationException extends LaravelException<Map<String, dynamic>>
   String get firstErrorMessage => _errors[firstErrorKey]!.first;
 
   List<String> get firstErrorMessages => _errors[firstErrorKey]!;
+
+  List<String> errorsByKey(String key) => _errors[key] ?? [];
 
   @override
   List<Object?> get props => [
@@ -58,4 +62,7 @@ class LValidationException extends LaravelException<Map<String, dynamic>>
     /// covert the buffer to string
     return buffer.toString();
   }
+
+  @override
+  String get message => firstErrorMessage;
 }

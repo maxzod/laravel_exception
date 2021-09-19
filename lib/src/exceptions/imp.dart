@@ -1,11 +1,20 @@
+import 'package:equatable/equatable.dart';
+
 /// * " Long Live The Queen "
 
-class LaravelException<T> implements Exception {
+abstract class LaravelException<T> with EquatableMixin implements Exception {
   /// contains the `response` data
   final T response;
 
-  LaravelException(this.response);
+  String get message;
+
+  LaravelException({
+    required this.response,
+  });
 
   @override
-  String toString() => response.toString();
+  String toString() => message;
+
+  @override
+  List<Object?> get props;
 }

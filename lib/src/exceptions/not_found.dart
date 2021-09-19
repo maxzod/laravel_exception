@@ -1,23 +1,27 @@
-import 'package:equatable/equatable.dart';
-
 import 'package:laravel_exception/src/exceptions/imp.dart';
-import 'package:laravel_exception/src/models/file_stack_trace.dart';
 
-class LNotFoundException extends LaravelException<Map<String, dynamic>>
-    with EquatableMixin {
-  final String message;
+class LNotFoundException extends LaravelException<Map<String, dynamic>> {
+  /// * Exception
   final String? exception;
+
+  /// * Exception message
+  final String _message;
+
+  /// * Exception file
   final String? file;
+
+  /// * Exception line
   final int? line;
-  final List<FileStackTrace>? trace;
   LNotFoundException({
     required Map<String, dynamic> response,
-    required this.message,
+    required String message,
     this.exception,
     this.file,
     this.line,
-    this.trace,
-  }) : super(response);
+  })  : _message = message,
+        super(
+          response: response,
+        );
 
   factory LNotFoundException.fromMap(Map<String, dynamic> map) {
     return LNotFoundException(
@@ -26,9 +30,6 @@ class LNotFoundException extends LaravelException<Map<String, dynamic>>
       exception: map['exception'],
       file: map['file'],
       line: map['line'],
-      trace: (map['trace'] as List?)
-          ?.map((x) => FileStackTrace.fromMap(x))
-          .toList(),
     );
   }
 
@@ -40,7 +41,9 @@ class LNotFoundException extends LaravelException<Map<String, dynamic>>
       exception,
       file,
       line,
-      trace,
     ];
   }
+
+  @override
+  String get message => _message;
 }

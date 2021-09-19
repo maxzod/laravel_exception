@@ -4,8 +4,8 @@ class FileStackTrace extends Equatable {
   final String file;
   final int line;
   final String function;
-  final String cClass;
-  final String type;
+  final String? cClass;
+  final String? type;
   const FileStackTrace({
     required this.file,
     required this.line,
@@ -13,7 +13,7 @@ class FileStackTrace extends Equatable {
     required this.cClass,
     required this.type,
   });
- 
+
   factory FileStackTrace.fromMap(Map<String, dynamic> map) {
     return FileStackTrace(
       file: map['file'],
@@ -25,7 +25,7 @@ class FileStackTrace extends Equatable {
   }
 
   @override
-  List<Object> get props {
+  List<Object?> get props {
     return [
       file,
       line,
