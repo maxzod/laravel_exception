@@ -9,9 +9,9 @@ environment:
 dependencies:
   # dio: ^4.0.0
   equatable: ^2.0.3
-  json_blueprint:
-    git:
-      url: git@github.com:maxzod/json_blueprint.git
+  # json_blueprint:
+  #   git:
+  #     url: git@github.com:maxzod/json_blueprint.git
 
 dev_dependencies:
   lints: ^1.0.1
