@@ -8,6 +8,7 @@
 //   @override
 //   void onResponse(Response response, ResponseInterceptorHandler handler) {
 //     //TODO:: check if the backend is laravel
+//     //TODO:: interceptors wont catch the thrown the exception instead will skip it 
 //     log(response.statusCode.toString());
 //     switch (response.statusCode) {
 //       case 500:

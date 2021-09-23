@@ -1,6 +1,6 @@
 import 'package:laravel_exception/src/exceptions/imp.dart';
 
-class LNotFoundException extends LaravelException<Map<String, dynamic>> {
+class LNotFoundException extends LaravelException {
   /// * Exception
   final String? exception;
 
@@ -23,7 +23,7 @@ class LNotFoundException extends LaravelException<Map<String, dynamic>> {
           response: response,
         );
 
-  factory LNotFoundException.fromMap(Map<String, dynamic> map) {
+  factory LNotFoundException.parse(Map<String, dynamic> map) {
     return LNotFoundException(
       response: map,
       message: map['message'],

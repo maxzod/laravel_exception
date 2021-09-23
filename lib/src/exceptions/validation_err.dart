@@ -1,9 +1,6 @@
-import 'package:equatable/equatable.dart';
-
 import 'package:laravel_exception/src/exceptions/imp.dart';
 
-class LValidationException extends LaravelException<Map<String, dynamic>>
-    with EquatableMixin {
+class LValidationException extends LaravelException {
   final Map<String, List<String>> _errors;
 
   LValidationException(

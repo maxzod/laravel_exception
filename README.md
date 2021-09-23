@@ -2,34 +2,34 @@
 
 # **`Part of Queen Packages 👑`**
 
-[![style: lint](https://img.shields.io/badge/style-lint-4BC0F5.svg)](https://pub.dev/packages/lint)
-
 # Motivation
 
 - since we work with APIs built with `Laravel` almost daily
-- i have built this package to easily wrap the validation exception which laravel might throw
-- you can easily know which fields got rejected or have failed and there messages
+- i have built this package to easily wrap the validation , NotFound , Internal Server Error exceptions which laravel might throw
+- you can easily know which fields got rejected or have failed and there messages in case of validation
+- in laravel debug mode extract the message easily with the stack trace
+- also you can build your custom exception if needed
 
 # Content
 
-- `LaravelException` Exception class which will parse the laravel response
+- `LaravelException` abstract class which will parse the laravel response
+- `LValidationException` Exception for `422` status code use the constructor to create objects
+- `LServerException` Exception for `500` status code use the `parse(Map)` factory to create objects
+- `LNotFoundException` Exception for `404` status code use the `parse(Map)` factory to create objects
 
 # example
 
 ```dart
- // 422
-if(res.statusCode == HttpStatus.unprocessableEntity){
-      throw LaravelException.parse(res.data);
+
+if(res.statusCode == 422){
+      throw  LValidationException(res.data);
+}else if(res.statusCode == 500){
+      throw  LServerException.parse(res.data);
+}else if(res.statusCode == 404){
+      throw  LNotFoundException.parse(res.data);
 }
 
 ```
-
-# Exception props 🧬
-
-- `keys` contains the failed input keys in the exception object
-- `errorMessages` contains the failed input keys in the exception object
-- `firstErrorMessage` return the first failure message
-- `toString()` convert the object to one big error message
 
 # What is next ?
 

@@ -6,7 +6,7 @@ void main() {
   test(
     'laravel 500 response aka InternalServerError',
     () {
-      final exception = LServerException.fromMap(response);
+      final exception = LServerException.parse(response);
       expect(exception.message, equals('Undefined variable: name'));
       expect(exception.exception, equals('ErrorException'));
       expect(

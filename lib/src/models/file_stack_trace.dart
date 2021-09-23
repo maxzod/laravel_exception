@@ -14,7 +14,7 @@ class FileStackTrace extends Equatable {
     required this.type,
   });
 
-  factory FileStackTrace.fromMap(Map<String, dynamic> map) {
+  factory FileStackTrace.parse(Map<String, dynamic> map) {
     return FileStackTrace(
       file: map['file'],
       line: map['line'],
