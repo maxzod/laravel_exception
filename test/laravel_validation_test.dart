@@ -3,19 +3,16 @@ import 'package:test/test.dart';
 
 void main() {
   const resData = <String, dynamic>{
-    "error": {
-      'message': "The given data was invalid.",
-      'errors': {
-        'website': [
-          'The website format is invalid.',
-        ],
-        'calling_code': [
-          'The calling code may not be greater than 4 characters.',
-        ],
-        'mobile': [
-          'The mobile may not be greater than 9 characters.',
-        ],
-      }
+    'errors': {
+      'website': [
+        'The website format is invalid.',
+      ],
+      'calling_code': [
+        'The calling code may not be greater than 4 characters.',
+      ],
+      'mobile': [
+        'The mobile may not be greater than 9 characters.',
+      ],
     },
   };
   // const resData = <String, dynamic>{

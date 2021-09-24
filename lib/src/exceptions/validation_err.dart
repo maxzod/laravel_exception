@@ -5,7 +5,7 @@ class LValidationException extends LaravelException {
 
   LValidationException(
     Map<String, dynamic> response,
-  )   : _errors = response['error']['errors'] ?? response['error'],
+  )   : _errors = response['errors'] ?? response['error'],
         super(
           response: response,
         );
