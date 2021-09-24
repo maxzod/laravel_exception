@@ -37,29 +37,29 @@ void main() {
         exception.message,
         equals("قيمة الهاتف مُستخدمة من قبل."),
       );
-      expect(
-        exception.firstErrorMessages.length,
-        equals(2),
-      );
-      expect(
-        exception.firstErrorMessages,
-        equals([
-          "قيمة الهاتف مُستخدمة من قبل.",
-          'مش مرتاح للرقم ده',
-        ]),
-      );
+      // expect(
+      //   exception.firstErrorMessages.length,
+      //   equals(2),
+      // );
+      // expect(
+      //   exception.firstErrorMessages,
+      //   equals([
+      //     "قيمة الهاتف مُستخدمة من قبل.",
+      //     'مش مرتاح للرقم ده',
+      //   ]),
+      // );
 
-      expect(
-        exception.errorsByKey('sucessfull_key'),
-        equals([]),
-      );
+      // expect(
+      //   exception.errorsByKey('sucessfull_key'),
+      //   equals([]),
+      // );
 
-      expect(
-        exception.errorsByKey('email'),
-        equals([
-          "قيمة البريد الالكتروني مُستخدمة من قبل.",
-        ]),
-      );
+      // expect(
+      // exception.errorsByKey('email'),
+      // equals([
+      //   "قيمة البريد الالكتروني مُستخدمة من قبل.",
+      // ]),
+      // );
     },
   );
 }
