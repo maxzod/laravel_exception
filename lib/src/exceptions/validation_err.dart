@@ -1,11 +1,11 @@
 import 'package:laravel_exception/src/exceptions/imp.dart';
 
 class LValidationException extends LaravelException {
-  final Map<String, Map<String, List<String>>> _errors;
+  final Map<String, List<String>> _errors;
 
   LValidationException(
     Map<String, dynamic> response,
-  )   : _errors = response['errors'] ?? response['error'],
+  )   : _errors = response['error']['errors'] ?? response['error'],
         super(
           response: response,
         );
@@ -15,11 +15,11 @@ class LValidationException extends LaravelException {
 
   String get firstErrorKey => keys.first;
 
-  String get firstErrorMessage => _errors[firstErrorKey]!.keys.first;
+  String get firstErrorMessage => _errors[firstErrorKey]!.first;
 
-  // List<String> get firstErrorMessages => _errors[firstErrorKey]!.;
+  List<String> get firstErrorMessages => _errors[firstErrorKey]!;
 
-  // List<String> errorsByKey(String key) => _errors[key] ?? [];
+  List<String> errorsByKey(String key) => _errors[key] ?? [];
 
   @override
   List<Object?> get props => [

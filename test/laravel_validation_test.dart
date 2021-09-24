@@ -4,18 +4,34 @@ import 'package:test/test.dart';
 void main() {
   const resData = <String, dynamic>{
     "error": {
-      "phone": [
-        "قيمة الهاتف مُستخدمة من قبل.",
-        'مش مرتاح للرقم ده',
-      ],
-      "email": [
-        "قيمة البريد الالكتروني مُستخدمة من قبل.",
-      ],
-      "username": [
-        "قيمة username مُستخدمة من قبل.",
-      ],
+      'message': "The given data was invalid.",
+      'errors': {
+        'website': [
+          'The website format is invalid.',
+        ],
+        'calling_code': [
+          'The calling code may not be greater than 4 characters.',
+        ],
+        'mobile': [
+          'The mobile may not be greater than 9 characters.',
+        ],
+      }
     },
   };
+  // const resData = <String, dynamic>{
+  //   "error": {
+  //     "phone": [
+  //       "قيمة الهاتف مُستخدمة من قبل.",
+  //       'مش مرتاح للرقم ده',
+  //     ],
+  //     "email": [
+  //       "قيمة البريد الالكتروني مُستخدمة من قبل.",
+  //     ],
+  //     "username": [
+  //       "قيمة username مُستخدمة من قبل.",
+  //     ],
+  //   },
+  // };
   test(
     'when parsing valid response it will do it right',
     () {
@@ -23,43 +39,38 @@ void main() {
 
       expect(
         exception.keys,
-        equals(['phone', 'email', 'username']),
+        equals(['website', 'calling_code', 'mobile']),
       );
       expect(
         exception.firstErrorKey,
-        equals('phone'),
+        equals('website'),
       );
       expect(
         exception.firstErrorMessage,
-        equals("قيمة الهاتف مُستخدمة من قبل."),
+        equals('The website format is invalid.'),
       );
       expect(
         exception.message,
-        equals("قيمة الهاتف مُستخدمة من قبل."),
+        equals('The website format is invalid.'),
       );
-      // expect(
-      //   exception.firstErrorMessages.length,
-      //   equals(2),
-      // );
-      // expect(
-      //   exception.firstErrorMessages,
-      //   equals([
-      //     "قيمة الهاتف مُستخدمة من قبل.",
-      //     'مش مرتاح للرقم ده',
-      //   ]),
-      // );
+      expect(
+        exception.firstErrorMessages.length,
+        equals(1),
+      );
+      expect(
+        exception.firstErrorMessages,
+        equals(['The website format is invalid.']),
+      );
 
-      // expect(
-      //   exception.errorsByKey('sucessfull_key'),
-      //   equals([]),
-      // );
+      expect(
+        exception.errorsByKey('success_key'),
+        equals([]),
+      );
 
-      // expect(
-      // exception.errorsByKey('email'),
-      // equals([
-      //   "قيمة البريد الالكتروني مُستخدمة من قبل.",
-      // ]),
-      // );
+      expect(
+        exception.errorsByKey('mobile'),
+        equals(['The mobile may not be greater than 9 characters.']),
+      );
     },
   );
 }
