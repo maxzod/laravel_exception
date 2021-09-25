@@ -1,7 +1,7 @@
 import 'package:laravel_exception/src/exceptions/validation_err.dart';
 import 'package:test/test.dart';
 
-void main() {
+void main() async {
   const resData = <String, dynamic>{
     'errors': {
       'website': [
@@ -15,20 +15,7 @@ void main() {
       ],
     },
   };
-  // const resData = <String, dynamic>{
-  //   "error": {
-  //     "phone": [
-  //       "قيمة الهاتف مُستخدمة من قبل.",
-  //       'مش مرتاح للرقم ده',
-  //     ],
-  //     "email": [
-  //       "قيمة البريد الالكتروني مُستخدمة من قبل.",
-  //     ],
-  //     "username": [
-  //       "قيمة username مُستخدمة من قبل.",
-  //     ],
-  //   },
-  // };
+
   test(
     'when parsing valid response it will do it right',
     () {
@@ -61,7 +48,7 @@ void main() {
 
       expect(
         exception.errorsByKey('success_key'),
-        equals([]),
+        equals(null),
       );
 
       expect(
