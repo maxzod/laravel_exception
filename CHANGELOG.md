@@ -1,3 +1,7 @@
+## 0.0.3
+
+- fix \_InternalLinkedHashMap<dynamic, dynamic>' is not a subtype of type ....
+
 ## 0.0.2
 
 - support 404 `LNotFoundException`
