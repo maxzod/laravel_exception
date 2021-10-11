@@ -5,7 +5,8 @@ class LValidationException extends LaravelException {
 
   LValidationException(
     Map<String, dynamic> response,
-  )   : _errors = Map<String, List>.from(response['errors']),
+  )   : _errors =
+            Map<String, List>.from(response['errors'] ?? response['error']),
         super(response: response);
 
   /// contains the failed input keys in the exception object
@@ -17,7 +18,7 @@ class LValidationException extends LaravelException {
 
   List<String> get firstErrorMessages => errorsByKey(firstErrorKey)!;
 
-  List<String>? errorsByKey(String key) => _errors[key] as List<String>?;
+  List<String>? errorsByKey(String key) => _errors[key]?.cast<String>();
 
   @override
   List<Object?> get props => [
