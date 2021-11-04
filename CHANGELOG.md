@@ -1,3 +1,7 @@
+## 0.0.4
+
+- update `LValidationException` to use the message attribute instead of the first error message
+
 ## 0.0.3
 
 - fix \_InternalLinkedHashMap<dynamic, dynamic>' is not a subtype of type ....

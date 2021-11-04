@@ -8,15 +8,16 @@ abstract class LaravelException with EquatableMixin implements Exception {
 
   /// * {"message" => }
   /// * attached message with the response
-  final String message;
 
   LaravelException({
     required this.response,
-  }) : message = response['message'];
+  });
 
   @override
   String toString() => message;
 
   @override
   List<Object?> get props;
+
+  String get message => response['message'];
 }
