@@ -1,21 +1,21 @@
 import 'package:laravel_exception/src/exceptions/validation_err.dart';
 import 'package:test/test.dart';
 
+const resData = <String, dynamic>{
+  'message': 'The given data was invalid.',
+  'errors': {
+    'website': [
+      'The website format is invalid.',
+    ],
+    'calling_code': [
+      'The calling code may not be greater than 4 characters.',
+    ],
+    'mobile': [
+      'The mobile may not be greater than 9 characters.',
+    ],
+  },
+};
 void main() async {
-  const resData = <String, dynamic>{
-    'errors': {
-      'website': [
-        'The website format is invalid.',
-      ],
-      'calling_code': [
-        'The calling code may not be greater than 4 characters.',
-      ],
-      'mobile': [
-        'The mobile may not be greater than 9 characters.',
-      ],
-    },
-  };
-
   test(
     'when parsing valid response it will do it right',
     () {
@@ -35,7 +35,7 @@ void main() async {
       );
       expect(
         exception.message,
-        equals('The website format is invalid.'),
+        equals('The given data was invalid.'),
       );
       expect(
         exception.firstErrorMessages.length,

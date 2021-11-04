@@ -6,9 +6,13 @@ abstract class LaravelException with EquatableMixin implements Exception {
   /// contains the `response` data
   final Map<String, dynamic> response;
 
-  String get message;
+  /// * {"message" => }
+  /// * attached message with the response
+  final String message;
 
-  LaravelException({required this.response});
+  LaravelException({
+    required this.response,
+  }) : message = response['message'];
 
   @override
   String toString() => message;

@@ -5,8 +5,9 @@ class LValidationException extends LaravelException {
 
   LValidationException(
     Map<String, dynamic> response,
-  )   : _errors =
-            Map<String, List>.from(response['errors'] ?? response['error']),
+  )   : _errors = Map<String, List>.from(
+          response['errors'] ?? response['error'] ?? {},
+        ),
         super(response: response);
 
   /// contains the failed input keys in the exception object
@@ -22,6 +23,7 @@ class LValidationException extends LaravelException {
 
   @override
   List<Object?> get props => [
+        message,
         response,
         _errors,
       ];
@@ -58,7 +60,4 @@ class LValidationException extends LaravelException {
     /// covert the buffer to string
     return buffer.toString();
   }
-
-  @override
-  String get message => response['message'] ?? firstErrorMessage!;
 }

@@ -6,9 +6,6 @@ class LServerException extends LaravelException {
   /// * Exception
   final String? exception;
 
-  /// * Exception message
-  final String _message;
-
   /// * Exception file
   final String? file;
 
@@ -20,20 +17,17 @@ class LServerException extends LaravelException {
 
   LServerException({
     required Map<String, dynamic> response,
-    required String message,
     this.exception,
     this.file,
     this.line,
     this.trace,
-  })  : _message = message,
-        super(
+  }) : super(
           response: response,
         );
 
   factory LServerException.parse(Map<String, dynamic> map) {
     return LServerException(
       response: map,
-      message: map['message'],
       exception: map['exception'],
       file: map['file'],
       line: map['line'],
@@ -43,17 +37,12 @@ class LServerException extends LaravelException {
   }
 
   @override
-  List<Object?> get props {
-    return [
-      response,
-      message,
-      exception,
-      file,
-      line,
-      trace,
-    ];
-  }
-
-  @override
-  String get message => _message;
+  List<Object?> get props => [
+        message,
+        response,
+        exception,
+        file,
+        line,
+        trace,
+      ];
 }
