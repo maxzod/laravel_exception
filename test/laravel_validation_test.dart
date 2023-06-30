@@ -9,6 +9,7 @@ const resData = <String, dynamic>{
     ],
     'calling_code': [
       'The calling code may not be greater than 4 characters.',
+      'The dial code is invalid.',
     ],
     'mobile': [
       'The mobile may not be greater than 9 characters.',
@@ -30,8 +31,13 @@ void main() async {
         equals('website'),
       );
       expect(
-        exception.firstErrorMessage,
-        equals('The website format is invalid.'),
+        exception.errorsCombined,
+        equals(
+          """The website format is invalid.\n"""
+          """The calling code may not be greater than 4 characters.\n"""
+          """The dial code is invalid.\n"""
+          """The mobile may not be greater than 9 characters.""",
+        ),
       );
       expect(
         exception.message,
@@ -44,6 +50,21 @@ void main() async {
       expect(
         exception.firstErrorMessages,
         equals(['The website format is invalid.']),
+      );
+
+      expect(
+        exception.errorsCombinedByKey("calling_code"),
+        equals(
+          """The calling code may not be greater than 4 characters.\n"""
+          """The dial code is invalid.""",
+        ),
+      );
+
+      expect(
+        exception.errors().length,
+        equals(
+          exception.keys.length,
+        ),
       );
 
       expect(
