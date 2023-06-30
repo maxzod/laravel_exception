@@ -13,13 +13,30 @@ class LValidationException extends LaravelException {
   /// contains the failed input keys in the exception object
   List<String> get keys => _errors.keys.toList();
 
-  String get firstErrorKey => keys.first;
+  List<String> errors() {
+    List<List<String>> errorsList = _errors.values.cast<List<String>>().toList();
+    errorsList.removeWhere((element) => element.isEmpty);
+    List<String> errors = [];
+    for (List<String> element in errorsList) {
+      if (element.length == 1) {
+        errors.add(element.first);
+        continue;
+      }
 
-  String? get firstErrorMessage => errorsByKey(firstErrorKey)?.first;
+      errors.add(element.join("\n"));
+    }
+    return errors;
+  }
+
+  String get firstErrorKey => keys.first;
 
   List<String> get firstErrorMessages => errorsByKey(firstErrorKey)!;
 
   List<String>? errorsByKey(String key) => _errors[key]?.cast<String>();
+
+  String? errorsCombinedByKey(String key) => _errors[key]?.cast<String>().join("\n");
+
+  String get errorsCombined => errors().join("\n");
 
   @override
   List<Object?> get props => [
@@ -49,8 +66,7 @@ class LValidationException extends LaravelException {
         final isLastMsg = i == _errors.keys.length;
 
         /// append the message
-        errorBuffer
-            .write('$currentFelid $currentMessage${isLastMsg ? '\n' : ''}');
+        errorBuffer.write('$currentFelid $currentMessage${isLastMsg ? '\n' : ''}');
       }
 
       /// append the message
